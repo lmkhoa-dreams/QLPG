@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KingdomFitnessModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="GoiTap">
+    <Key>
+      <PropertyRef Name="MaGoi" />
+    </Key>
+    <Property Name="MaGoi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenGoi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GiaTien" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="SoThang" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="HoaDonThanhToans" Relationship="Self.FK__HoaDonTha__MaGoi__4222D4EF" FromRole="GoiTap" ToRole="HoaDonThanhToan" />
+  </EntityType>
+  <EntityType Name="HoaDonThanhToan">
+    <Key>
+      <PropertyRef Name="MaHD" />
+    </Key>
+    <Property Name="MaHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NgayLap" Type="DateTime" Precision="0" />
+    <Property Name="MaHV" Type="Int32" Nullable="false" />
+    <Property Name="MaGoi" Type="Int32" Nullable="false" />
+    <Property Name="MaPT" Type="Int32" />
+    <Property Name="NgayBatDau" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="NgayHetHan" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TongTien" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="GoiTap" Relationship="Self.FK__HoaDonTha__MaGoi__4222D4EF" FromRole="HoaDonThanhToan" ToRole="GoiTap" />
+    <NavigationProperty Name="HoiVien" Relationship="Self.FK__HoaDonThan__MaHV__412EB0B6" FromRole="HoaDonThanhToan" ToRole="HoiVien" />
+    <NavigationProperty Name="PT" Relationship="Self.FK__HoaDonThan__MaPT__4316F928" FromRole="HoaDonThanhToan" ToRole="PT" />
+  </EntityType>
+  <EntityType Name="HoiVien">
+    <Key>
+      <PropertyRef Name="MaHV" />
+    </Key>
+    <Property Name="MaHV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenHV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NgayDangKy" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="HoaDonThanhToans" Relationship="Self.FK__HoaDonThan__MaHV__412EB0B6" FromRole="HoiVien" ToRole="HoaDonThanhToan" />
+  </EntityType>
+  <EntityType Name="PT">
+    <Key>
+      <PropertyRef Name="MaPT" />
+    </Key>
+    <Property Name="MaPT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenPT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="HoaDonThanhToans" Relationship="Self.FK__HoaDonThan__MaPT__4316F928" FromRole="PT" ToRole="HoaDonThanhToan" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="TenDangNhap" />
+    </Key>
+    <Property Name="TenDangNhap" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MatKhau" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__HoaDonTha__MaGoi__4222D4EF">
+    <End Role="GoiTap" Type="Self.GoiTap" Multiplicity="1" />
+    <End Role="HoaDonThanhToan" Type="Self.HoaDonThanhToan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GoiTap">
+        <PropertyRef Name="MaGoi" />
+      </Principal>
+      <Dependent Role="HoaDonThanhToan">
+        <PropertyRef Name="MaGoi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HoaDonThan__MaHV__412EB0B6">
+    <End Role="HoiVien" Type="Self.HoiVien" Multiplicity="1" />
+    <End Role="HoaDonThanhToan" Type="Self.HoaDonThanhToan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoiVien">
+        <PropertyRef Name="MaHV" />
+      </Principal>
+      <Dependent Role="HoaDonThanhToan">
+        <PropertyRef Name="MaHV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HoaDonThan__MaPT__4316F928">
+    <End Role="PT" Type="Self.PT" Multiplicity="0..1" />
+    <End Role="HoaDonThanhToan" Type="Self.HoaDonThanhToan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PT">
+        <PropertyRef Name="MaPT" />
+      </Principal>
+      <Dependent Role="HoaDonThanhToan">
+        <PropertyRef Name="MaPT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KingdomFitnessEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="GoiTaps" EntityType="Self.GoiTap" />
+    <EntitySet Name="HoaDonThanhToans" EntityType="Self.HoaDonThanhToan" />
+    <EntitySet Name="HoiVien" EntityType="Self.HoiVien" />
+    <EntitySet Name="PTs" EntityType="Self.PT" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
+    <AssociationSet Name="FK__HoaDonTha__MaGoi__4222D4EF" Association="Self.FK__HoaDonTha__MaGoi__4222D4EF">
+      <End Role="GoiTap" EntitySet="GoiTaps" />
+      <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HoaDonThan__MaHV__412EB0B6" Association="Self.FK__HoaDonThan__MaHV__412EB0B6">
+      <End Role="HoiVien" EntitySet="HoiVien" />
+      <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HoaDonThan__MaPT__4316F928" Association="Self.FK__HoaDonThan__MaPT__4316F928">
+      <End Role="PT" EntitySet="PTs" />
+      <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToans" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

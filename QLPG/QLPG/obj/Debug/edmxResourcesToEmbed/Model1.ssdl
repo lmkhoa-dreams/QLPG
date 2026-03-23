@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KingdomFitnessModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="GoiTap">
+    <Key>
+      <PropertyRef Name="MaGoi" />
+    </Key>
+    <Property Name="MaGoi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenGoi" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="GiaTien" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="SoThang" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HoaDonThanhToan">
+    <Key>
+      <PropertyRef Name="MaHD" />
+    </Key>
+    <Property Name="MaHD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NgayLap" Type="date" />
+    <Property Name="MaHV" Type="int" Nullable="false" />
+    <Property Name="MaGoi" Type="int" Nullable="false" />
+    <Property Name="MaPT" Type="int" />
+    <Property Name="NgayBatDau" Type="date" Nullable="false" />
+    <Property Name="NgayHetHan" Type="date" Nullable="false" />
+    <Property Name="TongTien" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HoiVien">
+    <Key>
+      <PropertyRef Name="MaHV" />
+    </Key>
+    <Property Name="MaHV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenHV" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SoDienThoai" Type="varchar" MaxLength="15" />
+    <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+    <Property Name="NgayDangKy" Type="date" />
+  </EntityType>
+  <EntityType Name="PT">
+    <Key>
+      <PropertyRef Name="MaPT" />
+    </Key>
+    <Property Name="MaPT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenPT" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SoDienThoai" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="TenDangNhap" />
+    </Key>
+    <Property Name="TenDangNhap" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MatKhau" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__HoaDonTha__MaGoi__4222D4EF">
+    <End Role="GoiTap" Type="Self.GoiTap" Multiplicity="1" />
+    <End Role="HoaDonThanhToan" Type="Self.HoaDonThanhToan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GoiTap">
+        <PropertyRef Name="MaGoi" />
+      </Principal>
+      <Dependent Role="HoaDonThanhToan">
+        <PropertyRef Name="MaGoi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HoaDonThan__MaHV__412EB0B6">
+    <End Role="HoiVien" Type="Self.HoiVien" Multiplicity="1" />
+    <End Role="HoaDonThanhToan" Type="Self.HoaDonThanhToan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoiVien">
+        <PropertyRef Name="MaHV" />
+      </Principal>
+      <Dependent Role="HoaDonThanhToan">
+        <PropertyRef Name="MaHV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HoaDonThan__MaPT__4316F928">
+    <End Role="PT" Type="Self.PT" Multiplicity="0..1" />
+    <End Role="HoaDonThanhToan" Type="Self.HoaDonThanhToan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PT">
+        <PropertyRef Name="MaPT" />
+      </Principal>
+      <Dependent Role="HoaDonThanhToan">
+        <PropertyRef Name="MaPT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KingdomFitnessModelStoreContainer">
+    <EntitySet Name="GoiTap" EntityType="Self.GoiTap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HoaDonThanhToan" EntityType="Self.HoaDonThanhToan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HoiVien" EntityType="Self.HoiVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PT" EntityType="Self.PT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__HoaDonTha__MaGoi__4222D4EF" Association="Self.FK__HoaDonTha__MaGoi__4222D4EF">
+      <End Role="GoiTap" EntitySet="GoiTap" />
+      <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToan" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HoaDonThan__MaHV__412EB0B6" Association="Self.FK__HoaDonThan__MaHV__412EB0B6">
+      <End Role="HoiVien" EntitySet="HoiVien" />
+      <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToan" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HoaDonThan__MaPT__4316F928" Association="Self.FK__HoaDonThan__MaPT__4316F928">
+      <End Role="PT" EntitySet="PT" />
+      <End Role="HoaDonThanhToan" EntitySet="HoaDonThanhToan" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
