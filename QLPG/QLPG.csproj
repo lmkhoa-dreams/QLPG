@@ -115,11 +115,11 @@
     <Compile Include="Tk.Designer.cs">
       <DependentUpon>Tk.cs</DependentUpon>
     </Compile>
-    <Compile Include="UpdateDeletecs.cs">
+    <Compile Include="GT.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UpdateDeletecs.Designer.cs">
-      <DependentUpon>UpdateDeletecs.cs</DependentUpon>
+    <Compile Include="GT.Designer.cs">
+      <DependentUpon>GT.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewMembers.cs">
       <SubType>Form</SubType>
@@ -143,6 +143,9 @@
     </Compile>
     <EmbeddedResource Include="AddMember.resx">
       <DependentUpon>AddMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GT.resx">
+      <DependentUpon>GT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

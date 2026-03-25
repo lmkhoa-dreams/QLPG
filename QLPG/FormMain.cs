@@ -19,7 +19,7 @@ namespace QLPG
 
         private void button6_Click(object sender, EventArgs e)
         {
-            UpdateDeletecs updateDeletecs = new UpdateDeletecs();
+            GT updateDeletecs = new GT();
             updateDeletecs.Show();
             this.Hide();
         }

@@ -36,7 +36,7 @@
             this.btnDSPT = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnqlgt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -109,7 +109,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 102);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 112);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1197, 670);
             this.pictureBox1.TabIndex = 20;
@@ -125,18 +125,18 @@
             this.pictureBox2.TabIndex = 21;
             this.pictureBox2.TabStop = false;
             // 
-            // btnEdit
+            // btnqlgt
             // 
-            this.btnEdit.BackColor = System.Drawing.Color.IndianRed;
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.Location = new System.Drawing.Point(968, 22);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(146, 74);
-            this.btnEdit.TabIndex = 22;
-            this.btnEdit.Text = "Chỉnh sửa";
-            this.btnEdit.UseVisualStyleBackColor = false;
-            this.btnEdit.Click += new System.EventHandler(this.button6_Click);
+            this.btnqlgt.BackColor = System.Drawing.Color.IndianRed;
+            this.btnqlgt.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnqlgt.ForeColor = System.Drawing.Color.White;
+            this.btnqlgt.Location = new System.Drawing.Point(968, 22);
+            this.btnqlgt.Name = "btnqlgt";
+            this.btnqlgt.Size = new System.Drawing.Size(146, 74);
+            this.btnqlgt.TabIndex = 22;
+            this.btnqlgt.Text = "Quản lý gói tập";
+            this.btnqlgt.UseVisualStyleBackColor = false;
+            this.btnqlgt.Click += new System.EventHandler(this.button6_Click);
             // 
             // FormMain
             // 
@@ -144,7 +144,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1199, 773);
-            this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.btnqlgt);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnDSPT);
@@ -169,6 +169,6 @@
         private System.Windows.Forms.Button btnDSPT;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnqlgt;
     }
 }
